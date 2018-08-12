@@ -1,0 +1,9 @@
+export OVSDB_HOST=192.168.122.52
+export OVSDB_PORT=6633
+
+## Use ssh tunnel to the SOVDB server
+
+ssh -f root@192.168.122.52 -L 6633:192.168.122.52:6633 -N
+ssh root@10.0.225.183 -L 6633:127.0.0.1:6633 -N
+
+

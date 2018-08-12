@@ -1,0 +1,41 @@
+{
+    "name": "simple",
+    "version": "0.0.1",
+    "cksum": "1278623084 20312",
+    "tables":  {
+        "List": {                    
+            "columns": {
+                "name": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": {
+                        "key": {
+                            "type": "uuid",
+                            "refTable": "Item"
+                        },
+                        "min": 0,
+                        "max": "unlimited"
+                    }
+                }
+            },
+            "isRoot": true,
+            "indexes": [
+                ["name"]
+            ]
+        },
+        "Item": {
+            "columns": {
+                "status": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

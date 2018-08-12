@@ -1,0 +1,19 @@
+S .
+B _server/*
+B _client/*
+
+PKG ocamlbuild
+PKG react
+PKG react
+PKG yojson
+PKG eliom.server
+PKG eliom.ppx.server
+PKG ppx_deriving_protobuf
+PKG ppx_deriving
+PKG deriving
+PKG lwt.ppx
+PKG ocsigen.client
+PKG ocsigen.server
+PKG ppx_deriving.std
+
+FLG -w +A-4-6-7-9-27-32-33-34-37-40-42-44-48
