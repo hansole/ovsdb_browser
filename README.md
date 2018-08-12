@@ -1,11 +1,13 @@
 # OVSDB browser
 
-This is a small program that lets you browse the content of OVSDB
-databases. The content is shown in a Web GUI.
+This is an application that lets you browse the content of
+[OVSDB](http://docs.openvswitch.org/en/latest/ref/ovsdb.7/) databases.
+The content is shown in a Web GUI.
 
-The tools coming with OVSDB provides the same functionality and much
-more. However, I find the usage of these tools can be a bit complicated
-and the output a bit "overwhelming" for some of the tasks I'm doing.
+The tools coming with OVSDB provides the same functionality, and much
+more. However, I find the usage of these tools can be a bit
+complicated and the output a bit "overwhelming" for some of the tasks
+I'm doing.
 
 I was not able to find any tools that made it easy browsing the
 databases. So that's the goal of this application.
@@ -41,14 +43,14 @@ It show a simple dependency between the tables.
 The application is written in [OCaml](https://ocaml.org/) using the
 [Ocsigen](https://ocsigen.org/) framework. It has only been tested
 under Ubuntu 16.04, but it will probably run on other Linux
-distributions that has proper OCaml.
+distributions that has proper OCaml support.
 
 It is easiest to build and install using
 [OPAM](https://opam.ocaml.org/).
 
 Install the packages 'oscigen-start' and 'yojson'. I think that should
 install all the dependencies. (Version 3.2.0 of 'js\_of\_ocaml' has a
-bug, so downgrade the js\_of\_ocaml* packages to version 3.1.0.
+bug, so downgrade the js\_of\_ocaml* packages to version 3.1.0.)
 
 'make test.opt' will build the server and connect to the OVSDB server
 at '127.0.0.1:6640'. You can change the DB host with "OVSDB\_HOST" and
@@ -69,12 +71,12 @@ This will create an executable and the dependencies and put it in the
 target folder. You should be able to copy this to other nodes and run
 it there.
 
-I was not able to figure out how to make the whole server as a single
+(I was not able to figure out how to make the whole server as a single
 executable, as
 [reported](https://sympa.inria.fr/sympa/arc/ocsigen/2018-06/msg00000.html)
 on the mailing list for the framework. So the actually application is
 still loaded dynamically into the web-server. If I find a solution,
-that will be fixed at some time.
+that will be fixed at some time.)
 
 ## Issues
 
@@ -116,5 +118,5 @@ improved in the not so distant future.
 
 * Delete rows, including rows that has dependencies to other tables.
 
-* Insert/clone rows, with help also inserting in dependent tables
+* Insert/clone rows, with help also inserting in dependent tables.
 
