@@ -141,7 +141,7 @@ let%shared setup_change_popup append_link content sf db tname col uuid_only =
               (Eliom_content.Html.To_dom.of_element ~%append_link)
               (fun _ _ ->
                 let ap = Eliom_content.Html.To_dom.of_element ~%append_link in
-                let row_val = Js.to_string ap##.innerHTML in
+                let row_val = Js.to_string ap##.title in
                 let len = String.length row_val in
                 let rows, cols =
                   if len < 100 then
