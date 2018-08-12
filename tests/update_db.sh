@@ -3,7 +3,7 @@
 
 
 
-ovsdb-client transact tcp:127.0.0.1:16633  '[
+ovsdb-client transact tcp:127.0.0.1:6640  '[
     "simple",
     {
         "op": "delete",
@@ -17,11 +17,11 @@ ovsdb-client transact tcp:127.0.0.1:16633  '[
     }
 ]'
 
-ovsdb-client transact tcp:127.0.0.1:16633 '["simple",{"op":"insert", "table":"Item", "row":{"description":"Sample Item1", "status": "new"}, "uuid-name":"newitem" }, {"op":"insert", "table":"List", "row":{"name":"List2", "items":["set",[["named-uuid","newitem"]]]}}]'
+ovsdb-client transact tcp:127.0.0.1:6640 '["simple",{"op":"insert", "table":"Item", "row":{"description":"Sample Item1", "status": "new"}, "uuid-name":"newitem" }, {"op":"insert", "table":"List", "row":{"name":"List2", "items":["set",[["named-uuid","newitem"]]]}}]'
 
-ovsdb-client transact tcp:127.0.0.1:16633 '["simple",{"op":"insert", "table":"Item", "row":{"description":"Sample Item2", "status": "new"}, "uuid-name":"newitem" }, {"op":"insert", "table":"List", "row":{"name":"List3", "items":["set",[["named-uuid","newitem"]]]}}]'
+ovsdb-client transact tcp:127.0.0.1:6640 '["simple",{"op":"insert", "table":"Item", "row":{"description":"Sample Item2", "status": "new"}, "uuid-name":"newitem" }, {"op":"insert", "table":"List", "row":{"name":"List3", "items":["set",[["named-uuid","newitem"]]]}}]'
 
-ovsdb-client transact tcp:127.0.0.1:16633  '[
+ovsdb-client transact tcp:127.0.0.1:6640  '[
     "simple",
     {
         "op": "insert",
@@ -55,7 +55,7 @@ ovsdb-client transact tcp:127.0.0.1:16633  '[
 
 while true;
 do
-ovsdb-client transact tcp:127.0.0.1:16633  '[
+ovsdb-client transact tcp:127.0.0.1:6640  '[
     "simple",
     {
         "op": "update",
@@ -71,7 +71,7 @@ ovsdb-client transact tcp:127.0.0.1:16633  '[
 ]'
 
 sleep 2
-ovsdb-client transact tcp:127.0.0.1:16633  '[
+ovsdb-client transact tcp:127.0.0.1:6640  '[
     "simple",
     {
         "op": "update",
