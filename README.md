@@ -33,7 +33,7 @@ integers that has no dependencies.
 
 It show a simple dependency between the tables.
 
-![GUI](ovsdb_browser_gui.png)
+![GUI](/ovsdb_browser_gui.png)
 
 
 ## Build and run
