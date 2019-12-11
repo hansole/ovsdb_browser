@@ -51,6 +51,16 @@ let read_next_json_object inch =
                        end
                    end;
                    check_pos := 0;
+                   let len = (String.length rets) in
+                   let start_string =
+                     if len > 120 then
+                       String.sub rets 0 119 
+                     else
+                       rets
+                   in
+                   let () = Printf.printf "OBJ: size %d  '%s'\n" len start_string in
+                   let () = flush stdout
+                   in
                    Lwt.return rets
                  end
                else

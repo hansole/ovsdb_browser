@@ -3,10 +3,13 @@ This is the frontend of the application.
 It has most of the presentation logic
  *)
 [%%shared
+    open Js_of_ocaml
+    open Js_of_ocaml_lwt
     open Eliom_lib
     open Eliom_content
     open Html.D
 ]
+
 
 module Ovsdb_browser_app =
   Eliom_registration.App (
@@ -318,11 +321,11 @@ let%shared map_table l =
                         ] [uuid_link]
                       in
                       let () =
-                        if link = "" then
+                        (* if link = "" then *)
                           let () = setup_change_popup td uuid_link sf db tname col uuid_only in
                           ()
-                        else
-                          ()
+                        (* else
+                         *   () *)
                       in
                       td
 

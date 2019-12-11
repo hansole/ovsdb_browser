@@ -13,6 +13,8 @@ let logger =
 
 
 [%%shared
+
+open Js_of_ocaml
 type db_name = string
 type tbl_name = string
 type uuid_pos = int
