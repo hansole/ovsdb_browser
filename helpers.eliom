@@ -58,9 +58,9 @@ let read_next_json_object inch =
                      else
                        rets
                    in
-                   let () = Printf.printf "OBJ: size %d  '%s'\n" len start_string in
-                   let () = flush stdout
-                   in
+                   (* let () = Printf.printf "OBJ: size %d  '%s'\n" len start_string in
+                    * let () = flush stdout
+                    * in *)
                    Lwt.return rets
                  end
                else
