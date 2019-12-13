@@ -3,13 +3,15 @@ This is the frontend of the application.
 It has most of the presentation logic
  *)
 [%%shared
-    open Js_of_ocaml
-    open Js_of_ocaml_lwt
     open Eliom_lib
     open Eliom_content
     open Html.D
 ]
 
+[%%client
+    open Js_of_ocaml
+    open Js_of_ocaml_lwt
+]
 
 module Ovsdb_browser_app =
   Eliom_registration.App (
@@ -49,6 +51,8 @@ let%shared get_uuid_str str =
   let p1, p2 = loop 0 (len -1) in
   String.sub str (p1+1) ((p2 -1) - p1)
 
+    (* open Js_of_ocaml
+     * open Js_of_ocaml_lwt *)
 
 let%shared button msg msg2 db f v =
   let btn =
@@ -157,7 +161,7 @@ let%shared setup_change_popup append_link content sf db tname col uuid_only =
 
                 let input_text = Html.D.textarea ~a:[a_name "a"; a_rows rows; a_cols cols]
                                    (pcdata row_val) in
-                let submit = Form.input ~input_type:`Submit ~value:"Submit" Form.string in
+                let submit = Eliom_content.Html.D.Form.input ~input_type:`Submit ~value:"Submit" Eliom_content.Html.D.Form.string in
                 let heading = (~%db ^ "." ^ ~%tname ^ "." ^ ~%col
                                ^ " uuid: " ^ ~%uuid_only ) in
                 let aaa = p [pcdata heading;
@@ -169,7 +173,7 @@ let%shared setup_change_popup append_link content sf db tname col uuid_only =
                 ignore [
                     ((Lwt.async @@
                         fun () ->
-                        Lwt_js_events.clicks
+                        Js_of_ocaml_lwt.Lwt_js_events.clicks
                           (Eliom_content.Html.To_dom.of_element submit)
                           (fun _ _ ->
                             let vi = Eliom_content.Html.To_dom.of_textarea (input_text) in
