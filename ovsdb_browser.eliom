@@ -57,7 +57,7 @@ let%shared get_uuid_str str =
 let%shared button msg msg2 db f v =
   let btn =
     Eliom_content.Html.
-      (D.button ~a:[D.a_class ["button"]] [D.pcdata msg])
+      (D.button ~a:[D.a_class ["button"]] [D.txt msg])
   in
   let cur = ref msg in
   ignore [%client
@@ -160,11 +160,11 @@ let%shared setup_change_popup append_link content sf db tname col uuid_only =
                 in
 
                 let input_text = Html.D.textarea ~a:[a_name "a"; a_rows rows; a_cols cols]
-                                   (pcdata row_val) in
+                                   (txt row_val) in
                 let submit = Eliom_content.Html.D.Form.input ~input_type:`Submit ~value:"Submit" Eliom_content.Html.D.Form.string in
                 let heading = (~%db ^ "." ^ ~%tname ^ "." ^ ~%col
                                ^ " uuid: " ^ ~%uuid_only ) in
-                let aaa = p [pcdata heading;
+                let aaa = p [txt heading;
                              br ();
                              input_text;
                              br ();
@@ -221,7 +221,7 @@ let%shared map_table l =
                             in
                             let append_link =
                               div ~a:[Eliom_content.Html.D.a_class
-                                        [table_type]]  [pcdata s]
+                                        [table_type]]  [txt s]
                             in
                             ignore [%client
                                        ((Lwt.async @@
@@ -271,7 +271,7 @@ let%shared map_table l =
                               ];
                             [append_link]
                           else
-                            [pcdata s]
+                            [txt s]
                         in
                         Eliom_content.Html.D.td
                           ~a:[
@@ -287,7 +287,7 @@ let%shared map_table l =
                       let col = List.nth cols i in
                       let uuid_link =
                         if link = "" then
-                              let append_link = pcdata s
+                              let append_link = txt s
                               in
                               append_link
                         else
@@ -296,7 +296,7 @@ let%shared map_table l =
                             if has_uuid then
                               let append_link =
                                   div ~a:[Eliom_content.Html.D.a_class
-                                            ["w3-text-blue"]] [pcdata s]
+                                            ["w3-text-blue"]] [txt s]
                               in
                               ignore [%client
                                          ((Lwt.async @@
@@ -314,7 +314,7 @@ let%shared map_table l =
 
                               append_link
                             else
-                              pcdata s
+                              txt s
                           end
                       in
                       let id = (db ^ "." ^ uuid_only ^ "." ^ col) in
@@ -341,7 +341,7 @@ let%shared map_table l =
             with _ ->
               Eliom_content.Html.(
                    D.tr [
-                       D.th [pcdata ""]
+                       D.th [txt ""]
                      ]
               ) : _ -> _)
           )
@@ -407,13 +407,13 @@ let map_dbs db l =
             in
             if sh then
               Eliom_content.Html.(
-              D.li [b [D.pcdata s]; btn; btn2; D.pcdata table_ref;
-                    span ~a:[a_id (~%db ^ "." ^ s) ][D.pcdata  ""]; div [my_tables]]
+              D.li [b [D.txt s]; btn; btn2; D.txt table_ref;
+                    span ~a:[a_id (~%db ^ "." ^ s) ][D.txt  ""]; div [my_tables]]
               )
             else
               Eliom_content.Html.(
-              D.li [b [D.pcdata s];
-                    span ~a:[a_id (~%db ^ "." ^ s) ][D.pcdata  ""]; div [my_tables]]
+              D.li [b [D.txt s];
+                    span ~a:[a_id (~%db ^ "." ^ s) ][D.txt  ""]; div [my_tables]]
               )
 
           ))
@@ -441,11 +441,11 @@ let map_dbs2 db l =
               ];
             if sh then
               Eliom_content.Html.(
-              D.li [b [D.pcdata s]; span ~a:[a_id (~%db ^ "." ^ s) ][D.pcdata  ""]; div [my_tables]]
+              D.li [b [D.txt s]; span ~a:[a_id (~%db ^ "." ^ s) ][D.txt  ""]; div [my_tables]]
               )
             else
               Eliom_content.Html.(
-              D.li [b [D.pcdata s]; span ~a:[a_id (~%db ^ "." ^ s) ][D.pcdata  ""]; div [my_tables]]
+              D.li [b [D.txt s]; span ~a:[a_id (~%db ^ "." ^ s) ][D.txt  ""]; div [my_tables]]
               )
 
           ) : _ -> _)
@@ -508,7 +508,7 @@ let () =
             in
             let rul = [Html.R.ul l] in
             let rul2 = [Html.R.ul l2] in
-            div [span [pcdata db; btn; btn2; span  ~a:[a_id db ] [pcdata  ""]  ];
+            div [span [txt db; btn; btn2; span  ~a:[a_id db ] [txt  ""]  ];
                 div rul ; div rul2 ]
           ) dbs
       in
@@ -518,9 +518,9 @@ let () =
            ~title:"ovsdb browser"
            ~css:[["css";"ovsdb_browser.css"]]
            Html.(D.body ([
-                         D.h1 [pcdata "ovsdb browser (0.0.1)"];
-                         D.span [pcdata "Databases "];
-                           span  ~a:[a_id "_json_rpc_speed"  ] [pcdata  ""];
+                         D.h1 [txt "ovsdb browser (0.0.1)"];
+                         D.span [txt "Databases "];
+                           span  ~a:[a_id "_json_rpc_speed"  ] [txt  ""];
                        ]
                            @ databases
                    )

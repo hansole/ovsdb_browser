@@ -7,7 +7,7 @@ This module has various hash tables to keep state for the application
 
 let response_tbl = Hashtbl.create 101
 
-let add_response_handler (key : string)  (handler : Yojson.Basic.json -> unit Lwt.t) : unit =
+let add_response_handler (key : string)  (handler : Yojson.Basic.t -> unit Lwt.t) : unit =
   let ts = Unix.gettimeofday () in
   Hashtbl.add response_tbl key (ts, handler)
 
@@ -24,7 +24,7 @@ let find_response_handler key =
 
 let request_tbl = Hashtbl.create 101
 
-let add_request_handler (key : string)  (handler : Yojson.Basic.json -> unit Lwt.t ) : unit  =
+let add_request_handler (key : string)  (handler : Yojson.Basic.t -> unit Lwt.t ) : unit  =
   let ts = Unix.gettimeofday () in
   Hashtbl.add request_tbl key (ts, handler)
 

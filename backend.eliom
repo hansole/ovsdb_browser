@@ -396,7 +396,7 @@ let process_notification_insert_delete db_name json =
                      | `List _ | `Bool _|`Assoc _|`Float _|`String _|`Int _ ->
                         let ass_list = Yojson.Basic.Util.to_assoc nv in
                         let with_uuid = ("_uuid", `List [`String "uuid"; `String assco])::ass_list in
-                        let all_ass : Yojson.Basic.json = `Assoc with_uuid in
+                        let all_ass : Yojson.Basic.t = `Assoc with_uuid in
                         let dbn = "\"" ^ db_name ^ "\"" in
                         let only_keys, keys, keys_short, values, values_short =
                           Helpers.process_row_l dbn tbl [all_ass] in
@@ -463,7 +463,7 @@ let process_notification_all db_name json =
                      | `List _ | `Bool _|`Assoc _|`Float _|`String _|`Int _ ->
                         let ass_list = Yojson.Basic.Util.to_assoc nv in
                         let with_uuid = ("_uuid", `List [`String "uuid"; `String assco])::ass_list in
-                        let all_ass : Yojson.Basic.json = `Assoc with_uuid in
+                        let all_ass : Yojson.Basic.t = `Assoc with_uuid in
                         let dbn = "\"" ^ db_name ^ "\"" in
                         let only_keys, keys, keys_short, values, values_short =
                           Helpers.process_row_l dbn tbl [all_ass] in
@@ -631,7 +631,7 @@ let get_databases () =
 
 
 let%client get_databases =
-  ~%(Eliom_client.server_function [%derive.json: unit]
+  ~%(Eliom_client.server_function [%json: unit]
        (get_databases))
 
 let list_tables name =
@@ -662,7 +662,7 @@ let list_tables name =
 
 
 let%client list_tables =
-  ~%(Eliom_client.server_function [%derive.json: string]
+  ~%(Eliom_client.server_function [%json: string]
        (list_tables))
 
 let list_table (db_name, tbl_name) : (int * string list * string list 
@@ -695,7 +695,7 @@ let list_table (db_name, tbl_name) : (int * string list * string list
 
 
 let%client list_table =
-  ~%(Eliom_client.server_function [%derive.json: (string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string) ]
        (list_table))
 
 let show_row tbl signaler j =
@@ -746,7 +746,7 @@ let list_row (db_name, tbl_name, col_name) : string Lwt.t =
 
 
 let%client list_row =
-  ~%(Eliom_client.server_function [%derive.json: (string * string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string * string) ]
        (list_row))
 
 
@@ -787,7 +787,7 @@ let start_monitor_column (db_name, tbl_name, col_name) : string Lwt.t =
 
 
 let%client start_monitor_column =
-  ~%(Eliom_client.server_function [%derive.json: (string * string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string * string) ]
        (start_monitor_column))
 
 
@@ -829,7 +829,7 @@ let start_monitor_table (db_name, tbl_name ) : string Lwt.t =
 
 
 let%client start_monitor_table =
-  ~%(Eliom_client.server_function [%derive.json: (string * string ) ]
+  ~%(Eliom_client.server_function [%json: (string * string ) ]
        (start_monitor_table))
 
 let start_monitor_table_full (db_name, tbl_name ) : string Lwt.t =
@@ -873,7 +873,7 @@ let start_monitor_table_full (db_name, tbl_name ) : string Lwt.t =
     Lwt.return ("Failed: no DB connection")
 
 let%client start_monitor_table_full =
-  ~%(Eliom_client.server_function [%derive.json: (string * string ) ]
+  ~%(Eliom_client.server_function [%json: (string * string ) ]
        (start_monitor_table_full))
 
 
@@ -900,7 +900,7 @@ let stop_monitor_column (db_name, tbl_name, col_name) : string Lwt.t =
 
 
 let%client stop_monitor_column =
-  ~%(Eliom_client.server_function [%derive.json: (string * string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string * string) ]
        (stop_monitor_column))
 
 
@@ -927,7 +927,7 @@ let stop_monitor_table (db_name, tbl_name ) : string Lwt.t =
 
 
 let%client stop_monitor_table =
-  ~%(Eliom_client.server_function [%derive.json: (string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string) ]
        (stop_monitor_table))
 
 let stop_monitor_table_full (db_name, tbl_name ) : string Lwt.t =
@@ -951,7 +951,7 @@ let stop_monitor_table_full (db_name, tbl_name ) : string Lwt.t =
     Lwt.return ("Failed: no DB connection")
 
 let%client stop_monitor_table_full =
-  ~%(Eliom_client.server_function [%derive.json: (string * string) ]
+  ~%(Eliom_client.server_function [%json: (string * string) ]
        (stop_monitor_table_full))
 
 
@@ -986,7 +986,7 @@ let update_element (db_name, tbl_name, col_name, uuid, value) : string Lwt.t =
 
 
 let%client update_element =
-  ~%(Eliom_client.server_function [%derive.json: (string * string * string * string * string ) ]
+  ~%(Eliom_client.server_function [%json: (string * string * string * string * string ) ]
        (update_element))
 
 
